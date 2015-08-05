@@ -1,0 +1,19 @@
+{
+  "name": "closets",
+  "version": "1.0.0",
+  "description": "Closet inventory app for csllc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Iam-samara/closets.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Iam-samara/closets/issues"
+  },
+  "homepage": "https://github.com/Iam-samara/closets"
+}
