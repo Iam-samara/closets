@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Iam-samara/closets/issues"
   },
-  "homepage": "https://github.com/Iam-samara/closets"
+  "homepage": "https://github.com/Iam-samara/closets",
+  "dependencies": {
+    "express": "^4.13.3",
+    "mongoose": "^4.1.1"
+  }
 }
