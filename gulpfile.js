@@ -20,12 +20,12 @@ gulp.task('browserify', function() {
         watcher.bundle() // Create new bundle that uses the cache for high performance
         .pipe(source('bundle.js'))
     // This is where you add uglifying etc.
-        .pipe(gulp.dest('./build/'));
+        .pipe(gulp.dest('./client/'));
         console.log('Updated!', (Date.now() - updateStart) + 'ms');
     })
     .bundle() // Create the initial bundle when starting the task
     .pipe(source('bundle.js'))
-    .pipe(gulp.dest('./build/'));
+    .pipe(gulp.dest('./client/'));
 });
 
 
