@@ -19,5 +19,13 @@
   "dependencies": {
     "express": "^4.13.3",
     "mongoose": "^4.1.1",
+    "browserify": "^10.2.4",
+    "gulp": "^3.9.0",
+    "react": "^0.13.3",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.2.2"
+    "react": "^0.13.3",
+    "react-tools": "^0.13.3"
   }
 }
