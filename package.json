@@ -2,28 +2,34 @@
   "name": "closets",
   "version": "1.0.0",
   "description": "Closet inventory app for csllc",
-  "main": "index.js",
+  "main": "server/server.js.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Iam-samara/closets.git"
+    "url": "https://github.com/inventory-application/closets.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Iam-samara/closets/issues"
+    "url": "https://github.com/inventory-application/closets/issues"
   },
-  "homepage": "https://github.com/Iam-samara/closets",
+  "homepage": "https://github.com/inventory-application/closets",
   "dependencies": {
-    "bcrypt": "^0.8.4",
-    "body-parser": "^1.13.3",
     "express": "^4.13.3",
     "mongoose": "^4.1.1",
-    "passport": "^0.2.2",
-    "passport-facebook": "^2.0.0",
+    "browserify": "^10.2.4",
+    "gulp": "^3.9.0",
     "react": "^0.13.3",
-    "react-tools": "^0.13.3"
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.2.2",
+    "react": "^0.13.3",
+    "react-tools": "^0.13.3",
+    "bcrypt": "^0.8.4",
+    "body-parser": "^1.13.3",
+    "passport": "^0.2.2",
+    "passport-facebook": "^2.0.0"
   }
 }
