@@ -7,10 +7,25 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var FACEBOOK_APP_ID = '120609078282934';
 var FACEBOOK_APP_SECRET = '6007cc397e47b966843dbaec826cd3c7';
 var bodyParser = require('body-parser');
+var multer  = require('multer');
+var app=express();
+var done=false;
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', express.static('/client'));
+app.use(multer({ dest: './uploads/',
+ rename: function (fieldname, filename) {
+    return filename+Date.now();
+  },
+onFileUploadStart: function (file) {
+  console.log(file.originalname + ' is starting ...')
+},
+onFileUploadComplete: function (file) {
+  console.log(file.fieldname + ' uploaded to  ' + file.path)
+  done=true;
+}
+}));
 
 
 mongoose.connect('mongodb://inthecloset:c0desmith@ds031223.mongolab.com:31223/inthecloset',function(err){
@@ -26,7 +41,14 @@ passport.use(new FacebookStrategy({
   }, function(accessToken, refreshToken, profile, done) {
        process.nextTick(function() {
        done(null, profile);
-       console.log(profile._json); //save this info into database using schema
+       console.log(profile._json);
+
+       var user = new User({
+         _id : profile._json.id,
+         username:profile._json.name,
+         closet_id: profile._json.id
+       });
+      user.save({'user saved in database'});
     });
 }));
 
@@ -84,19 +106,9 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 }));
 
 
-//login request
-app.post('',function(req,res){
-//  var closet_id = req.body.id;
-  var user = new User({
-    _id :req.body.id,
-    username:req.body.name,
-    closet_id: req.body.id
-  });
-  res.send('should send back user Id? as a cookie?!!' + user.closet_id);
-});
 
 //when the user logs in they should receive the clothes in their closet
-app.get('/',function(req,res){
+app.get('/closet',function(req,res){
   //get profile for each user
   //get the users closet object of arrays holding objects
   User.findOne({_id: req.body.closet_id},function(err,closetId){
@@ -106,6 +118,18 @@ app.get('/',function(req,res){
     });
 
   });
+});
+
+/*Handling routes.*/
+app.get('/',function(req,res){
+      res.sendfile("index.html");
+});
+
+app.post('/api/photo',function(req,res){
+  if(done==true){
+    console.log(req.files);
+    res.end("File uploaded.");
+  }
 });
 
 

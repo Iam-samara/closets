@@ -8,3 +8,4 @@ var Images = React.createClass({
       </div>)
   }
 });
+module.export(Images);
