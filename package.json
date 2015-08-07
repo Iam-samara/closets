@@ -17,8 +17,12 @@
   },
   "homepage": "https://github.com/Iam-samara/closets",
   "dependencies": {
+    "bcrypt": "^0.8.4",
+    "body-parser": "^1.13.3",
     "express": "^4.13.3",
     "mongoose": "^4.1.1",
+    "passport": "^0.2.2",
+    "passport-facebook": "^2.0.0",
     "react": "^0.13.3",
     "react-tools": "^0.13.3"
   }
