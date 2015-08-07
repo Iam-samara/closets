@@ -18,6 +18,8 @@
   "homepage": "https://github.com/Iam-samara/closets",
   "dependencies": {
     "express": "^4.13.3",
-    "mongoose": "^4.1.1"
+    "mongoose": "^4.1.1",
+    "react": "^0.13.3",
+    "react-tools": "^0.13.3"
   }
 }

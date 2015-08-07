@@ -47,15 +47,15 @@ app.post('',function(req,res){
     username:req.body.name,
     closet_id: req.body.id
   });
-  res.send('should send back user Id? as a cookie?!!')
+  res.send('should send back user Id? as a cookie?!!' + user.closet_id);
 });
 
 //when the user logs in they should receive the clothes in their closet
 app.get('/',function(req,res){
   //get profile for each user
   //get the users closet object of arrays holding objects
-  User.findOne({_id: req.body.id},function(err,closetId){
-    Closet.findOne({closet_id: closetId.closet_id}, function(err,fullCloset){
+  User.findOne({_id: req.body.closet_id},function(err,closetId){
+    Closet.findOne({closet_id: closetId.closetId}, function(err,fullCloset){
       if(err) throw err;
       res.send(fullCloset);//should send back a large object of arrays
     });
