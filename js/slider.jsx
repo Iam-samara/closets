@@ -11,8 +11,8 @@ var Slider = React.createClass({
     return(
       <div>
         {categoryArr}
-      </div>)
-  }
+      </div>
+  )}
 });
 
-module.export(Slider);
+module.exports = Slider;
