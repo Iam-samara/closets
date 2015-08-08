@@ -89,15 +89,50 @@ var User = mongoose.model('User',userSchema);
 var Closet = mongoose.model('Closet',closetSchema);
 var Item = mongoose.model('Item',ItemSchema);
 
+/*Configure the multer.*/
+
+app.use(multer({ dest: './uploads/',
+ rename: function (fieldname, filename) {
+    return filename+ '-' +Date.now();
+  },
+onFileUploadStart: function (file) {
+  console.log(file.originalname + ' is starting ...')
+},
+onFileUploadComplete: function (file) {
+  console.log(file.fieldname + ' uploaded to  ' + file.path)
+  done=true;
+}
+}));
+
+/*Handling routes.*/
+
+app.get('/',function(req,res){
+      res.sendfile("index.html");
+});
+
+app.post('/api/photo',function(req,res){
+  if(done==true){
+    console.log(req.files);
+    res.end("File uploaded.");
+  }
+});
+
 app.get('/', function(req, res, next) {
-  res.sendfile('./client/Home.html');
+ res.sendfile('./client/Home.html');
+});
+app.get('/api/photo', function(req, res, next) {
+ res.sendfile('./client/api/photo');
 });
 app.get('/success', function(req, res, next) {
-  res.sendfile('./client/Profile.html');
+ res.sendfile('./client/Profile.html');
 });
 app.get('/error', function(req, res, next) {
-  res.sendfile('./client/error.html');
+ res.sendfile('./client/error.html');
 });
+app.get('/bundle.js', function(req, res, next) {
+ res.sendfile('./client/bundle.js');
+});
+
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
