@@ -12,6 +12,8 @@ var done = false;
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(bodyParser.json());
+
 
 app.use('/', express.static(__dirname + '/../client'));
 
@@ -43,15 +45,12 @@ app.use(multer({ dest: './uploads/',
 
 app.post('/api/photo',function(req,res){
   if(done==true){
-    // console.log('body: ' + req.body);
+    console.log('body: ' + Object.keys(req.body));
     console.log(req.files, req.userName);
     res.end("File uploaded.");
   }
 });
 
-app.post('/itemInfo', function(req, res) {
-  console.log(req.body);
-});
 
 //setting up OAuth facebook login
 passport.use(new FacebookStrategy({

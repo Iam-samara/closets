@@ -1,6 +1,7 @@
 (function() {
 	var React = require('react');
 	var Slider = require('./slider.jsx');
+	var Form = require('./form.jsx');
 
 
 	var shirts1 = 'http://g03.a.alicdn.com/kf/HTB1WaMTIFXXXXXgXVXXq6xXFXXXQ/Denim-font-b-Shirt-b-font-for-font-b-Women-b-font-font-b-Chambray-b.jpg';
@@ -17,6 +18,7 @@
 	  render: function(){
 	  	return(
 	    <div>
+	    	<Form />
 	      <Slider shelvesArr ={[{img: shirts1},{img: shirts2},{img: shirts3}]}/>
 	      <Slider shelvesArr = {[{img: pants1},{img: shirts2},{img: shirts3}]}/>
 	      <Slider shelvesArr = {[{img: shoes1},{img: shoes2},{img: shoes3}]}/>
