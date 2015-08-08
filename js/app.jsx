@@ -23,6 +23,8 @@ var Form = require('./form.jsx');
 	  render: function(){
 	  	return(
 	    <div>
+	    <Form />
+
 	      <Slider shelvesArr ={[{img: shirts1},{img: shirts2},{img: shirts3}]}/>
 	      <Slider shelvesArr = {[{img: pants1},{img: pants2},{img: pants3}]}/>
 	      <Slider shelvesArr = {[{img: shoes1},{img: shoes2},{img: shoes3}]}/>

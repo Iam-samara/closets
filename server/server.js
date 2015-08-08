@@ -7,6 +7,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var FACEBOOK_APP_ID = '120609078282934';
 var FACEBOOK_APP_SECRET = '6007cc397e47b966843dbaec826cd3c7';
 var bodyParser = require('body-parser');
+var path = require('path');
 var multer  = require('multer');
 var done = false;
 var upload = multer({dest: 'uploads/'});
@@ -55,9 +56,15 @@ app.use(multer({ dest: './uploads/',
 
 app.post('/api/photo',function(req,res){
   if(done==true){
+
   //  console.log('body: ' + Object.keys(req.body));
   //cannot see any data from here req.body not req.file not .username
-    res.end("File uploaded.");
+    console.log('successfully uploaded file');
+    console.log('body: ' + Object.keys(req.body));
+    console.log(req.files, req.userName);
+    // res.redirect('/error');
+    res.send('File uploaded.');
+    // res.sendFile(path.resolve(__dirname + "/../client/success.html"));
   }
 });
 
