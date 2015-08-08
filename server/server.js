@@ -54,15 +54,31 @@ app.use(multer({ dest: './uploads/',
 app.post('/api/photo',function(req,res){
   if(done==true){
 
-  //  console.log('body: ' + Object.keys(req.body));
-  //cannot see any data from here req.body not req.file not .username
-    console.log('successfully uploaded file');
+    var newItem = new Item({
+      category: req.body.category,
+      color:req.body.itemColor,
+      img: req.files.userPhoto.path
+    });
+    newItem.save(function(){
+      console.log('saved item');
+    });
+    Closet.find({}, function(err, closet){
+      if(closet[req.body.category])
+      {
+        closet[req.body.category].push(newItem);
+      }
+    });
 
-    console.log('color: ' + req.body.itemColor);
-    console.log('category: ' + req.body.category);
-    //console.log(req.files, req.userName);
-    // res.redirect('/error');
-    res.send('File uploaded.');
+
+
+    console.log(req.body.category);
+    console.log(req.body.itemColor);
+    console.log(req.files.userPhoto.path);
+    res.redirect('/success');
+    res.end();
+
+
+
     // res.sendFile(path.resolve(__dirname + "/../client/success.html"));
   }
 });
@@ -76,7 +92,24 @@ passport.use(new FacebookStrategy({
  }, function(accessToken, refreshToken, profile, done) {
       process.nextTick(function() {
       done(null, profile);
-      //console.log(profile._json); //save this info into database using schema
+
+      var fbUser = new User({
+        _id: profile._json.id,
+        username:profile._json.name,
+        closet_id:profile._json.id
+      });
+      var userCloset = new Closet({
+        closet_id: profile._json.id
+      });
+
+
+      fbUser.save(function(){
+        console.log('user saved to database');
+      });
+      userCloset.save(function(){
+        console.log('made a new Closet');
+      });
+        //console.log(profile._json); //save this info into database using schema
    });
 }));
 
@@ -98,19 +131,18 @@ var userSchema = new Schema({
 
 var closetSchema = new Schema({
  closet_id : {type: Schema.Types.ObjectId},
- tops: [Schema.Types.ObjectId],
- bottoms:[Schema.Types.ObjectId],
- shoes:[Schema.Types.ObjectId],
- accessories:[Schema.Types.ObjectId],
- onesie:[Schema.Types.ObjectId]
+ tops: [{type: Schema.ObjectId, ref: ItemSchema}],
+ bottoms:[{type: Schema.ObjectId, ref: ItemSchema}],
+ shoes:[],
+ accessories:[],
+ onesie:[]
 });
 
 var ItemSchema = new Schema({
  _itemId : {type: Schema.Types.ObjectId},
  category: {type: String, required: true},
  color: {type: String, required: true},
- img: { data: Buffer, contentType: String },
- name:{type: String}
+ img: { type: String}
 });
 
 var User = mongoose.model('User',userSchema);
@@ -121,7 +153,11 @@ app.get('/api/photo', function(req, res, next) {
  res.sendfile('./client/api/photo');
 });
 app.get('/success', function(req, res, next) {
+  console.log('get request made before serving file');
  res.sendfile('./client/Profile.html');
+ console.log('get request made after serving file');
+
+ //console.log('req.body info from /success' + req.body);
 });
 app.get('/error', function(req, res, next) {
  res.sendfile('./client/error.html');
@@ -136,27 +172,40 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 
 
 //login request
-app.post('',function(req,res){
-//  var closet_id = req.body.id;
- var user = new User({
-   _id :req.body.id,
-   username:req.body.name,
-   closet_id: req.body.id
- });
- res.send('should send back user Id? as a cookie?!!' + user.closet_id);
-});
+// app.post('',function(req,res){
+// //  var closet_id = req.body.id;
+//  var user = new User({
+//    _id :req.body.id,
+//    username:req.body.name,
+//    closet_id: req.body.id
+//  });
+//
+//  res.send('should send back user Id? as a cookie?!!' + user.closet_id);
+// });
 
 //when the user logs in they should receive the clothes in their closet
-app.get('/',function(req,res){
+app.get('/closet',function(req,res){
  //get profile for each user
  //get the users closet object of arrays holding objects
- User.findOne({_id: req.body.closet_id},function(err,closetId){
-   Closet.findOne({closet_id: closetId.closetId}, function(err,fullCloset){
-     if(err) throw err;
-     res.send(fullCloset);//should send back a large object of arrays
-   });
 
- });
+  // User.find({}, function(err, blah){
+  //   console.log(blah);
+  // })
+Item.find({}, function(err, clothes){
+  console.log('item is  : ' + clothes);
+  res.send(clothes);
+})
+
+
+
+//ideally want to find that user then their closet
+ // User.findOne({_id: req.body.closet_id},function(err,closetId){
+ //   Closet.findOne({closet_id: closetId.closetId}, function(err,fullCloset){
+ //     if(err) throw err;
+ //     res.send(fullCloset);//should send back a large object of arrays
+ //   });
+ //
+ // });
 });
 
 

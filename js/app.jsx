@@ -1,6 +1,7 @@
 var React = require('react');
 var Slider = require('./slider.jsx');
 var Form = require('./form.jsx');
+var Closet = require('./closet.jsx');
 (function() {
 
 	var SlideStyle = {
@@ -24,11 +25,12 @@ var Form = require('./form.jsx');
 	  	return(
 	    <div>
 	    <Form />
-
 	      <Slider shelvesArr ={[{img: shirts1},{img: shirts2},{img: shirts3}]}/>
 	      <Slider shelvesArr = {[{img: pants1},{img: pants2},{img: pants3}]}/>
 	      <Slider shelvesArr = {[{img: shoes1},{img: shoes2},{img: shoes3}]}/>
+				<Closet/>
 	    </div>
+
 	  )}
 	});
 	React.render(<Homepage/>, document.getElementById('content'));
