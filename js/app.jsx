@@ -21,4 +21,4 @@ var Homepage = React.createClass({
     </div>
   }
 });
-React.render(<Homepage/>, document.getElementById('body'));
+React.render(<Homepage/>, document.body);

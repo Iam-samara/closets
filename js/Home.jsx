@@ -22,3 +22,4 @@ var Homepage = React.createClase({
   }
 });
 React.render(<Homepage/>, document.getElementById('body'));
+module.export= Homepage;

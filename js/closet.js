@@ -22,4 +22,4 @@ var Closet = React.createClass({
   }
 });
 
-module.export(Closet);
+module.export = CLoset;

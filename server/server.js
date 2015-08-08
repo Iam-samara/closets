@@ -7,6 +7,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var FACEBOOK_APP_ID = '120609078282934';
 var FACEBOOK_APP_SECRET = '6007cc397e47b966843dbaec826cd3c7';
 var bodyParser = require('body-parser');
+var path = require('path');
 var multer  = require('multer');
 var app=express();
 var done=false;
@@ -107,7 +108,7 @@ onFileUploadComplete: function (file) {
 /*Handling routes.*/
 
 app.get('/',function(req,res){
-      res.sendfile("index.html");
+  res.sendfile(path.resolve(__dirname + '/../client/Home.html'));
 });
 
 app.post('/api/photo',function(req,res){
@@ -116,9 +117,10 @@ app.post('/api/photo',function(req,res){
     res.end("File uploaded.");
   }
 });
+//
 
 app.get('/', function(req, res, next) {
- res.sendfile('./client/Home.html');
+  res.sendfile(__dirname + "/../client/Home.html");
 });
 app.get('/api/photo', function(req, res, next) {
  res.sendfile('./client/api/photo');
@@ -157,7 +159,7 @@ app.get('/closet',function(req,res){
 
 /*Handling routes.*/
 app.get('/',function(req,res){
-      res.sendfile("index.html");
+      res.sendfile(__dirname + "/../client/Home.html");
 });
 
 app.post('/api/photo',function(req,res){
