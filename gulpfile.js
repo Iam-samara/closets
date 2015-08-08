@@ -18,6 +18,9 @@ gulp.task('browserify', function() {
         var updateStart = Date.now();
         console.log('Updating!');
         watcher.bundle() // Create new bundle that uses the cache for high performance
+        .on('error', function(err) {
+            console.log('Error with compiling components', err.message);
+        })
         .pipe(source('bundle.js'))
     // This is where you add uglifying etc.
         .pipe(gulp.dest('./client/'));
@@ -25,6 +28,9 @@ gulp.task('browserify', function() {
         console.log('Updated!', (Date.now() - updateStart) + 'ms');
     })
     .bundle() // Create the initial bundle when starting the task
+    .on('error', function(err) {
+            console.log('Error with compiling components', err.message);
+    })
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./client/'));
 });

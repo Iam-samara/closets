@@ -14,7 +14,7 @@ var done=false;
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/', express.static('/client'));
+app.use('/', express.static(__dirname + '/../client/'));
 app.use(multer({ dest: './uploads/',
  rename: function (fieldname, filename) {
     return filename+Date.now();
@@ -120,9 +120,7 @@ app.post('/api/photo',function(req,res){
 });
 //
 
-app.get('/', function(req, res, next) {
-  res.sendfile(__dirname + "/../client/Home.html");
-});
+
 app.get('/api/photo', function(req, res, next) {
  res.sendfile('./client/api/photo');
 });
@@ -132,9 +130,7 @@ app.get('/success', function(req, res, next) {
 app.get('/error', function(req, res, next) {
  res.sendfile('./client/error.html');
 });
-app.get('/bundle.js', function(req, res, next) {
- res.sendfile('./client/bundle.js');
-});
+
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
@@ -157,9 +153,7 @@ app.get('/closet',function(req,res){
 });
 
 /*Handling routes.*/
-app.get('/',function(req,res){
-      res.sendfile(__dirname + "/../client/Home.html");
-});
+
 
 app.post('/api/photo',function(req,res){
   if(done==true){
