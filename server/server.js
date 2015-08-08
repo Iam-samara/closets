@@ -34,6 +34,23 @@ mongoose.connect('mongodb://inthecloset:c0desmith@ds031223.mongolab.com:31223/in
   console.log('connected to DB');
 });
 
+/*Configure the multer.*/
+
+app.use(multer({ dest: './uploads/',
+ rename: function (fieldname, filename) {
+    return filename+ '-' +Date.now();
+  },
+onFileUploadStart: function (file) {
+  console.log(file.originalname + ' is starting ...')
+},
+onFileUploadComplete: function (file) {
+  console.log(file.fieldname + ' uploaded to  ' + file.path)
+  done=true;
+}
+}));
+
+
+
 //setting up OAuth facebook login
 passport.use(new FacebookStrategy({
    clientID: FACEBOOK_APP_ID,
@@ -71,8 +88,8 @@ var userSchema = new Schema({
 
 var closetSchema = new Schema({
   closet_id : {type: Schema.Types.ObjectId},
-  tops: [Schema.Types.ObjectId],
-  bottoms:[Schema.Types.ObjectId],
+  top: [Schema.Types.ObjectId],
+  bottom:[Schema.Types.ObjectId],
   shoes:[Schema.Types.ObjectId],
   accessories:[Schema.Types.ObjectId],
   onesie:[Schema.Types.ObjectId]
@@ -90,26 +107,10 @@ var User = mongoose.model('User',userSchema);
 var Closet = mongoose.model('Closet',closetSchema);
 var Item = mongoose.model('Item',ItemSchema);
 
-/*Configure the multer.*/
 
-app.use(multer({ dest: './uploads/',
- rename: function (fieldname, filename) {
-    return filename+ '-' +Date.now();
-  },
-onFileUploadStart: function (file) {
-  console.log(file.originalname + ' is starting ...')
-},
-onFileUploadComplete: function (file) {
-  console.log(file.fieldname + ' uploaded to  ' + file.path)
-  done=true;
-}
-}));
 
 /*Handling routes.*/
 
-app.get('/',function(req,res){
-  res.sendfile(path.resolve(__dirname + '/../client/Home.html'));
-});
 
 app.post('/api/photo',function(req,res){
   if(done==true){
@@ -141,8 +142,6 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
   successRedirect: '/success',
   failureRedirect: '/error'
 }));
-
-
 
 //when the user logs in they should receive the clothes in their closet
 app.get('/closet',function(req,res){
