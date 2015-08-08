@@ -45,11 +45,11 @@ app.use(multer({ dest: './uploads/',
 
 app.post('/api/photo',function(req,res){
   if(done==true){
-    console.log('successfully uploaded file');
-    console.log('body: ' + Object.keys(req.body));
+    console.log(req.body.category);
+    console.log(req.body.itemColor);
     console.log(req.files, req.userName);
-    // res.redirect('/error');
-    res.send('File uploaded.');
+    res.redirect('/success');
+    res.end();
     // res.sendFile(path.resolve(__dirname + "/../client/success.html"));
   }
 });

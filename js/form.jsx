@@ -12,7 +12,7 @@ var Form = React.createClass({
 		    	<option value="accessories">Accessories</option>
 		    	<option value="onesie">Onesie</option>
     		</select>
-		    <input type="text" placeholder="color" />
+		    <input type="text" placeholder="color" name="itemColor" />
 		    <input type="file" name="userPhoto" />
 		    <input type="submit" value="Upload Image" name="submit" />
   		</form>
