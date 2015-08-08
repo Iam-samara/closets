@@ -9,8 +9,10 @@ var Slider = React.createClass({
     };
 
     return(
-      <div>
+      <div className="row">
+      <div className="col-xs-12">
         {categoryArr}
+        </div>
       </div>
   )}
 });
