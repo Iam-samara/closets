@@ -7,6 +7,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var FACEBOOK_APP_ID = '120609078282934';
 var FACEBOOK_APP_SECRET = '6007cc397e47b966843dbaec826cd3c7';
 var bodyParser = require('body-parser');
+var path = require('path');
 var multer  = require('multer');
 var done = false;
 
@@ -44,9 +45,12 @@ app.use(multer({ dest: './uploads/',
 
 app.post('/api/photo',function(req,res){
   if(done==true){
+    console.log('successfully uploaded file');
     console.log('body: ' + Object.keys(req.body));
     console.log(req.files, req.userName);
-    res.end("File uploaded.");
+    // res.redirect('/error');
+    res.send('File uploaded.');
+    // res.sendFile(path.resolve(__dirname + "/../client/success.html"));
   }
 });
 

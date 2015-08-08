@@ -2,11 +2,9 @@ var React = require('react');
 var $ = require('jquery');
 
 var Form = React.createClass({
-	submitForm: function() {
-	},
 	render: function() {
 		return(
-			<form id="uploadForm" enctype="multipart/form-data" action="/api/photo" method="post" onSubmit="submitForm">
+			<form id="uploadForm" enctype="multipart/form-data" action="/api/photo" method="post">
     		<select name="category">
 		    	<option value="top">Top</option>
 		    	<option value="bottom">Bottom</option>

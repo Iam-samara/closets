@@ -18,7 +18,7 @@
 	  render: function(){
 	  	return(
 	    <div>
-	    	<Form />
+	    <Form />
 	      <Slider shelvesArr ={[{img: shirts1},{img: shirts2},{img: shirts3}]}/>
 	      <Slider shelvesArr = {[{img: pants1},{img: shirts2},{img: shirts3}]}/>
 	      <Slider shelvesArr = {[{img: shoes1},{img: shoes2},{img: shoes3}]}/>
