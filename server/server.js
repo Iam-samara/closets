@@ -12,6 +12,7 @@ var done = false;
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(bodyParser.json()); 
 
 app.use('/', express.static(__dirname + '/../client'));
 
@@ -25,16 +26,17 @@ mongoose.connect('mongodb://inthecloset:c0desmith@ds031223.mongolab.com:31223/in
 /*Configure the multer.*/
 
 app.use(multer({ dest: './uploads/',
- rename: function (fieldname, filename) {
+  rename: function (fieldname, filename) {
     return filename+ '-' +Date.now();
   },
-onFileUploadStart: function (file) {
-  console.log(file.originalname + ' is starting ...')
-},
-onFileUploadComplete: function (file) {
-  console.log(file.fieldname + ' uploaded to  ' + file.path)
-  done=true;
-}
+  onFileUploadStart: function (file) {
+    // console.log(file.originalname + ' is starting ...')
+    // console.log(file);
+  },
+  onFileUploadComplete: function (file) {
+    // console.log(file.fieldname + ' uploaded to  ' + file.path)
+    done=true;
+  }
 }));
 
 /*Handling routes.*/
@@ -42,7 +44,8 @@ onFileUploadComplete: function (file) {
 
 app.post('/api/photo',function(req,res){
   if(done==true){
-    console.log(req.files);
+    console.log('body: ' + Object.keys(req.body));
+    console.log(req.files, req.userName);
     res.end("File uploaded.");
   }
 });
