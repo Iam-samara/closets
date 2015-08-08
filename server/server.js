@@ -41,9 +41,6 @@ app.use(multer({ dest: './uploads/',
     // console.log(file);
   },
   onFileUploadComplete: function (file) {
-    for(key in file){
-      console.log('for in loop has ' + file[key]);
-    }
     // console.log('file contains   ' + file);
     //  console.log('file.fieldname ====  ' +file.fieldname);
     //  console.log('file.path ===== ' + file.path);
@@ -60,8 +57,10 @@ app.post('/api/photo',function(req,res){
   //  console.log('body: ' + Object.keys(req.body));
   //cannot see any data from here req.body not req.file not .username
     console.log('successfully uploaded file');
-    console.log('body: ' + Object.keys(req.body));
-    console.log(req.files, req.userName);
+
+    console.log('color: ' + req.body.itemColor);
+    console.log('category: ' + req.body.category);
+    //console.log(req.files, req.userName);
     // res.redirect('/error');
     res.send('File uploaded.');
     // res.sendFile(path.resolve(__dirname + "/../client/success.html"));
