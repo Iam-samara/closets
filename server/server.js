@@ -9,6 +9,7 @@ var FACEBOOK_APP_SECRET = '6007cc397e47b966843dbaec826cd3c7';
 var bodyParser = require('body-parser');
 var multer  = require('multer');
 var done = false;
+var upload = multer({dest: 'uploads/'});
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -20,11 +21,15 @@ app.use('/', express.static(__dirname + '/../client'));
 
 mongoose.connect('mongodb://inthecloset:c0desmith@ds031223.mongolab.com:31223/inthecloset',function(err){
  if(err) throw err;
- console.log('connected to DB');
+ //console.log('connected to DB');
 });
 
 
 /*Configure the multer.*/
+
+// app.post('/profile', upload.single('avatar'), function(req,res,nest){
+//   console.log('body to porofile ' + req.body );
+// })
 
 app.use(multer({ dest: './uploads/',
   rename: function (fieldname, filename) {
@@ -35,7 +40,12 @@ app.use(multer({ dest: './uploads/',
     // console.log(file);
   },
   onFileUploadComplete: function (file) {
-    // console.log(file.fieldname + ' uploaded to  ' + file.path)
+    for(key in file){
+      console.log('for in loop has ' + file[key]);
+    }
+    // console.log('file contains   ' + file);
+    //  console.log('file.fieldname ====  ' +file.fieldname);
+    //  console.log('file.path ===== ' + file.path);
     done=true;
   }
 }));
@@ -45,8 +55,8 @@ app.use(multer({ dest: './uploads/',
 
 app.post('/api/photo',function(req,res){
   if(done==true){
-    console.log('body: ' + Object.keys(req.body));
-    console.log(req.files, req.userName);
+  //  console.log('body: ' + Object.keys(req.body));
+  //cannot see any data from here req.body not req.file not .username
     res.end("File uploaded.");
   }
 });
@@ -60,7 +70,7 @@ passport.use(new FacebookStrategy({
  }, function(accessToken, refreshToken, profile, done) {
       process.nextTick(function() {
       done(null, profile);
-      console.log(profile._json); //save this info into database using schema
+      //console.log(profile._json); //save this info into database using schema
    });
 }));
 

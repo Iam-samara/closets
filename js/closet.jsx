@@ -2,6 +2,8 @@ var React = require('react');
 var Slider = require('./Slider');
 var $ = require('jquery');
 
+
+(function(){
 var Closet = React.createClass({
   getInitialState: function() {
     return ({closetObj : {}});
@@ -23,4 +25,4 @@ var Closet = React.createClass({
 });
 
 
-module.exports = Closet;
+})();
