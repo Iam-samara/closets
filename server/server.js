@@ -48,7 +48,7 @@ passport.use(new FacebookStrategy({
          username:profile._json.name,
          closet_id: profile._json.id
        });
-      user.save({'user saved in database'});
+      user.save('user saved in database');
     });
 }));
 
