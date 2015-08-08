@@ -21,6 +21,7 @@ gulp.task('browserify', function() {
         .pipe(source('bundle.js'))
     // This is where you add uglifying etc.
         .pipe(gulp.dest('./client/'));
+
         console.log('Updated!', (Date.now() - updateStart) + 'ms');
     })
     .bundle() // Create the initial bundle when starting the task

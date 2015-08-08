@@ -2,7 +2,11 @@
   "name": "closets",
   "version": "1.0.0",
   "description": "Closet inventory app for csllc",
+<<<<<<< HEAD
   "main": "gulpfile.js",
+=======
+  "main": "server/server.js.js",
+>>>>>>> master
   "scripts": {
     "start": "node_modules/.bin/gulp"
   },
@@ -17,6 +21,7 @@
   },
   "homepage": "https://github.com/inventory-application/closets",
   "dependencies": {
+<<<<<<< HEAD
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.3",
     "browserify": "^10.2.4",
@@ -24,13 +29,27 @@
     "express": "^4.13.3",
     "gulp": "^3.9.0",
     "mongoose": "^4.1.1",
+=======
+    "bcrypt": "^0.8.4",
+    "body-parser": "^1.13.3",
+    "browserify": "^10.2.4",
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "jquery": "^2.1.4",
+    "mongoose": "^4.1.1",
+    "multer": "^1.0.3",
+>>>>>>> master
     "passport": "^0.2.2",
     "passport-facebook": "^2.0.0",
     "react": "^0.13.3",
     "react-tools": "^0.13.3",
     "reactify": "^1.1.1",
     "vinyl-source-stream": "^1.1.0",
+<<<<<<< HEAD
     "watchify": "^3.2.2",
     "multer": "~0.1.6"
+=======
+    "watchify": "^3.2.2"
+>>>>>>> master
   }
 }
