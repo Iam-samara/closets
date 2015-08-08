@@ -1,5 +1,5 @@
 var React = require('react');
-var Images = require('./Images');
+var Images = require('./image.jsx');
 
 var Slider = React.createClass({
   render: function(){
