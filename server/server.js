@@ -196,8 +196,6 @@ Item.find({}, function(err, clothes){
   res.send(clothes);
 })
 
-
-
 //ideally want to find that user then their closet
  // User.findOne({_id: req.body.closet_id},function(err,closetId){
  //   Closet.findOne({closet_id: closetId.closetId}, function(err,fullCloset){
