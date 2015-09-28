@@ -1,0 +1,84 @@
+1. Why are we here?
+	fix voting
+	change style (submit button)
+	change login types
+	working database
+	working upVote
+	add downvote function
+	
+	narrowing 
+2.Elevator Pitch
+	[For] coders
+	[who] like sharing information
+	[the] recoddit
+	[is a] resource sharing message board
+	[that] allows people to share & review tips/tricks CODING STYLE
+	[unlike] reddit or stackOverflow nor HACKERNEWS
+	[our product] focuses on specific coding issues
+
+3. create product box
+	[insert picture here]
+
+4.not list
+	 *no sub reddits
+	 *ability to post if not logged in
+	 * sort based on 
+		*votes and comments
+	*watch profanity on post
+	*cannot upload videos
+
+5.neighbors.. who can help us with what? do we need help?
+	* ryan- helped setup postgresql database
+	* previous group
+6. Show the Solution
+		focus: 1. Authentication + permission w/login
+		   2. postgresDB
+		   3. modular code
+		   4. spam filtering
+		   5. styling
+	       6. upvote feature
+	-Features
+	*add local login/auth + github oAuth
+	*user profile -- show own posts
+	*be able to post more than words.. photos
+	*algorithm to show percentage based on upvote
+	*only upvote once per post
+	*spam filtering
+	
+	-unresolved
+	*eliminate repost
+
+	-Architecture
+	* angular
+	*sql database(pg)
+	*oAuth
+	*Node
+	*express
+	*sequalize
+	*fileUpload
+
+7. what keeps us up at night?
+	*implementing the profile page
+	*sql database[samara][anshu][enyu]
+	*watch for repost feature[rouzbeh]
+	*rob - Authentication [matt]
+	*time
+	*understanding someone elses code
+
+8. size it up-- create deadlines	
+	end of Today:
+		*local login
+	tomorrow:
+		*github login
+	friday: 
+		*
+	saturday:
+		*styling
+	
+	
+9. whats got to give? build janky ..
+
+
+10. whats it goig to take?
+
+	Home
